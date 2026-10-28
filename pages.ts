@@ -6,6 +6,14 @@ export interface PanelPage {
   iconPluginId?: string;
 }
 
+export const MAX_PAGES = 100;
+
+export function upsertPage(pages: Map<string, PanelPage>, page: PanelPage): void {
+  if (pages.has(page.id) || pages.size < MAX_PAGES) {
+    pages.set(page.id, { ...pages.get(page.id), ...page });
+  }
+}
+
 export const DEFAULT_PAGES: PanelPage[] = [
   { id: "file-search-result-open-browser", label: "Open browser", kind: "action", icon: "Globe" },
   { id: "file-search-result-start-terminal", label: "Start terminal", kind: "action", icon: "Terminal" },

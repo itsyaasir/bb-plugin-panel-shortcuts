@@ -1,4 +1,4 @@
-import type { PanelPage } from "./pages";
+import { MAX_PAGES, upsertPage, type PanelPage } from "./pages";
 
 // BB 0.47 / SDK 0.6.79: the public panel opener is owner-scoped. Keep the
 // app-shell DOM dependency here until BB exposes cross-plugin launchers.
@@ -40,7 +40,7 @@ export function scanPages(root: ParentNode): PanelPage[] {
     const label = button.textContent?.trim();
     if (name?.startsWith("Show ") && label) pages.push({ id: name, label, kind: "view", ...nativeIcon(button) });
   }
-  return pages.filter((page) => page.id.length <= 256 && page.label.length <= 120).slice(0, 100);
+  return pages.filter((page) => page.id.length <= 256 && page.label.length <= 120).slice(0, MAX_PAGES);
 }
 
 export function mountAdapter(signal: AbortSignal): () => void {
@@ -50,9 +50,7 @@ export function mountAdapter(signal: AbortSignal): () => void {
     scheduled = false;
     if (signal.aborted) return;
     const next = new Map(catalog.map((page) => [page.id, page]));
-    for (const page of scanPages(document)) {
-      if (next.size < 100 || next.has(page.id)) next.set(page.id, page);
-    }
+    for (const page of scanPages(document)) upsertPage(next, page);
     const pages = [...next.values()];
     if (JSON.stringify(pages) !== JSON.stringify(catalog)) {
       catalog = pages;
