@@ -1,0 +1,80 @@
+{
+  "name": "bb-plugin-panel-shortcuts",
+  "version": "0.1.0",
+  "type": "module",
+  "engines": {
+    "bb": ">=0.47",
+    "bbPluginSdk": ">=0.6.79"
+  },
+  "bb": {
+    "name": "Panel Shortcuts",
+    "description": "Open your favorite right-panel pages with one click from the thread header.",
+    "branding": {
+      "icon": "PanelRight"
+    },
+    "server": "./server.ts",
+    "app": "./app.tsx"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.3.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@get-bb/plugin-sdk": "0.6.79",
+    "@radix-ui/react-tooltip": "^1.2.12",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "hono": "^4.13.14",
+    "jsdom": "^29.0.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sonner": "^1.7.4",
+    "tailwind-merge": "^3.4.0",
+    "typescript": "^5.7.0",
+    "vitest": "^4.1.1"
+  },
+  "scripts": {
+    "build": "bb plugin build",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "description": "Open your favorite right-panel pages with one click from the thread header.",
+  "private": true,
+  "license": "UNLICENSED",
+  "author": {
+    "name": "Yasir",
+    "url": "https://github.com/itsyaasir"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itsyaasir/bb-plugin-panel-shortcuts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/itsyaasir/bb-plugin-panel-shortcuts/issues"
+  },
+  "homepage": "https://github.com/itsyaasir/bb-plugin-panel-shortcuts#readme",
+  "keywords": [
+    "bb",
+    "plugin",
+    "panel",
+    "shortcuts"
+  ],
+  "files": [
+    "server.ts",
+    "app.tsx",
+    "pages.ts",
+    "panel-adapter.ts",
+    "page-icon.tsx",
+    "components/",
+    "lib/",
+    "skills/",
+    "tsconfig.json",
+    "dist/",
+    "README.md",
+    "PLUGIN_OVERVIEW.md"
+  ]
+}
